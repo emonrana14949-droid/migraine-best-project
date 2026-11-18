@@ -1,0 +1,16 @@
+question_no,section,question,response_scale,source_idea
+Q1,Screening,"In the last 3 months, have you had a headache that limited your work, study or daily activities for a day or more?",Yes / No,Samir et al. 2025 (MS-Q screening); Almomani et al. 2025 (ID-Migraine)
+Q2,Screening,"Do you feel nauseated or sick to your stomach when you have a headache?",Yes / No,Almomani et al. 2025 (ID-Migraine); dataset symptom Nausea 98.8%
+Q3,Screening,"Does light bother you a lot more when you have a headache than when you do not have a headache?",Yes / No,Almomani et al. 2025 (ID-Migraine); photophobia ~90%
+Q4,Symptoms,"Where is the pain usually? One side or both sides?",One side / Both sides / Changes,Angerhoefer et al. 2025; Suwanlaong et al. 2025 (bilateral pain = missed-diagnosis risk)
+Q5,Symptoms,"How would you describe the pain? Pulsating/throbbing or pressing/tight?",Pulsating / Pressing / Other,Angerhoefer et al. 2025 (pressing pain raised missed diagnosis in men)
+Q6,Symptoms,"Do you see visual disturbances (flashing lights, blind spots, zigzag lines) before or during a headache?",Yes / No,"Dataset: Visual is the top ML feature (importance 0.248); Rabany/Faisal: prodrome alone is weak"
+Q7,Symptoms,"Does physical activity make the headache worse?",Yes / No / Not sure,Suwanlaong et al. 2025 (no worsening by activity aOR 5.09 for misdiagnosis)
+Q8,Triggers,"In the last month, how often did poor sleep or irregular sleep come before a headache?",Never / Sometimes / Often / Always,"Samir et al. 2025 (sleep 59.7%); Almomani et al. 2025 (sleep 83%); Elmazny et al. 2025 (under-sleeping 85.6%)"
+Q9,Triggers,"In the last month, how often did stress come before a headache?",Never / Sometimes / Often / Always,Elmazny et al. 2025 (stress awareness 93.4%)
+Q10,Triggers,"In the last month, how often did loud noise or bright sun come before a headache?",Never / Sometimes / Often / Always,"Samir et al. 2025 (noise 47.4%, sun 45.6%); Elmazny et al. 2025 (loud noise 84.5%)"
+Q11,Triggers,"Do you keep a headache diary (date, sleep, stress, food, medicine)?",Yes / No,Elmazny et al. 2025 (only 18% keep a diary)
+Q12,Burden,"In the last 3 months, how many days did a headache stop you studying, working or going to class?",Number of days,"Samir et al. 2025 (MIDAS disability); Almomani et al. 2025 (27.5% severe disability)"
+Q13,Care-seeking,"Have you ever seen a doctor for your headaches? If yes, who first: GP, neurologist, pharmacist, other?",Never / GP / Neurologist / Pharmacist / Other,"Almomani et al. 2025 (only 11.7% sought care); Suwanlaong et al. 2025 (non-neurologist first consult aOR 7.92)"
+Q14,Treatment,"What do you usually take for a headache? (painkiller from a shop, prescribed medicine, nothing)",Shop painkiller / Prescribed / Nothing / Other,"Almomani et al. 2025 (82% analgesics, mainly OTC); Barbanti/Cardona-Roca (anti-CGRP real-world evidence — ask about preventive use, do not recommend drugs)"
+Q15,Diary follow-up,"Would you fill a 2-minute daily diary for 4 weeks (sleep, stress, headache, medicine, classes missed)?",Yes / No,"Report proposal: prospective diary cohort 150-300 students, 4-8 weeks; Faisal/Rabany forecasting idea needs daily data"

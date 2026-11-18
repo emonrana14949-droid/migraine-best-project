@@ -1,0 +1,4 @@
+model,test_accuracy_pct,cv_accuracy_pct,cv_std_pct
+Logistic Regression,93.8,92.2,4.1
+Random Forest,88.8,89.7,3.4
+Gradient Boosting,92.5,90.3,3.8

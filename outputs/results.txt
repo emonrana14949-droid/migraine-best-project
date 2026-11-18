@@ -1,0 +1,205 @@
+======================================================================
+PART A — Real 400-patient migraine classification
+======================================================================
+Rows: 400, Columns: 24
+
+Migraine type distribution:
+Type
+Typical aura with migraine       247
+Migraine without aura             60
+Familial hemiplegic migraine      24
+Typical aura without migraine     20
+Basilar-type aura                 18
+Other                             17
+Sporadic hemiplegic migraine      14
+
+Age summary:
+count    400.0
+mean      31.7
+std       12.1
+min       15.0
+25%       22.0
+50%       28.0
+75%       40.0
+max       77.0
+
+Symptom rates (% of patients with symptom > 0):
+  Nausea: 98.8%
+  Vomit: 32.2%
+  Phonophobia: 97.8%
+  Photophobia: 98.0%
+  Visual: 79.5%
+  Vertigo: 12.5%
+
+Train: 320, Test: 80 (stratified, random_state=42, NO augmentation)
+
+Logistic Regression:
+  Test accuracy: 93.8%
+  5-fold CV accuracy: 92.2% (+/- 4.1%)
+                               precision    recall  f1-score   support
+
+            Basilar-type aura       1.00      0.75      0.86         4
+ Familial hemiplegic migraine       0.75      0.60      0.67         5
+        Migraine without aura       0.92      1.00      0.96        12
+                        Other       1.00      0.67      0.80         3
+ Sporadic hemiplegic migraine       1.00      0.67      0.80         3
+   Typical aura with migraine       0.94      1.00      0.97        49
+Typical aura without migraine       1.00      1.00      1.00         4
+
+                     accuracy                           0.94        80
+                    macro avg       0.95      0.81      0.86        80
+                 weighted avg       0.94      0.94      0.93        80
+
+  Confusion matrix:
+ [[ 3  1  0  0  0  0  0]
+ [ 0  3  0  0  0  2  0]
+ [ 0  0 12  0  0  0  0]
+ [ 0  0  1  2  0  0  0]
+ [ 0  0  0  0  2  1  0]
+ [ 0  0  0  0  0 49  0]
+ [ 0  0  0  0  0  0  4]]
+
+Random Forest:
+  Test accuracy: 88.8%
+  5-fold CV accuracy: 89.7% (+/- 3.4%)
+                               precision    recall  f1-score   support
+
+            Basilar-type aura       0.50      0.25      0.33         4
+ Familial hemiplegic migraine       0.57      0.80      0.67         5
+        Migraine without aura       0.86      1.00      0.92        12
+                        Other       1.00      0.67      0.80         3
+ Sporadic hemiplegic migraine       1.00      0.67      0.80         3
+   Typical aura with migraine       0.94      0.94      0.94        49
+Typical aura without migraine       1.00      1.00      1.00         4
+
+                     accuracy                           0.89        80
+                    macro avg       0.84      0.76      0.78        80
+                 weighted avg       0.89      0.89      0.88        80
+
+  Confusion matrix:
+ [[ 1  2  0  0  0  1  0]
+ [ 0  4  0  0  0  1  0]
+ [ 0  0 12  0  0  0  0]
+ [ 0  0  1  2  0  0  0]
+ [ 0  0  0  0  2  1  0]
+ [ 1  1  1  0  0 46  0]
+ [ 0  0  0  0  0  0  4]]
+
+Gradient Boosting:
+  Test accuracy: 92.5%
+  5-fold CV accuracy: 90.3% (+/- 3.8%)
+                               precision    recall  f1-score   support
+
+            Basilar-type aura       1.00      0.75      0.86         4
+ Familial hemiplegic migraine       0.60      0.60      0.60         5
+        Migraine without aura       0.92      1.00      0.96        12
+                        Other       1.00      0.67      0.80         3
+ Sporadic hemiplegic migraine       1.00      0.67      0.80         3
+   Typical aura with migraine       0.94      0.98      0.96        49
+Typical aura without migraine       1.00      1.00      1.00         4
+
+                     accuracy                           0.93        80
+                    macro avg       0.92      0.81      0.85        80
+                 weighted avg       0.93      0.93      0.92        80
+
+  Confusion matrix:
+ [[ 3  1  0  0  0  0  0]
+ [ 0  3  0  0  0  2  0]
+ [ 0  0 12  0  0  0  0]
+ [ 0  0  1  2  0  0  0]
+ [ 0  0  0  0  2  1  0]
+ [ 0  1  0  0  0 48  0]
+ [ 0  0  0  0  0  0  4]]
+
+Feature importance (top 5):
+Visual       0.248
+Intensity    0.102
+Age          0.085
+Vertigo      0.076
+Frequency    0.068
+
+======================================================================
+PART B — Evidence from the 10 papers (data/papers.csv)
+======================================================================
+ rank                   short_cite  year  sample_n                                        sample_unit
+    1                Rabany et al.  2026     53065                                          app users
+    2                 Samir et al.  2025      5954            university students (11 MENA countries)
+    3                Faisal et al.  2026       146               trial patients (21550 headache days)
+    4           Angerhoefer et al.  2025      1130                      clinically diagnosed patients
+    5 Barbanti et al. (EMBRACE II)  2025       215      patients dosed (74 in effectiveness analysis)
+    6               Elmazny et al.  2025       515                        confirmed migraine patients
+    7              Almomani et al.  2025      1276                       university students (Jordan)
+    8          Cardona-Roca et al.  2025        80                          patients treated >=1 year
+    9            Suwanlaong et al.  2025        90 patients (diagnosis confirmed by two neurologists)
+   10                  Khan et al.  2024       400         original records (1447 after augmentation)
+
+Total sample across the 10 papers (note: overlapping populations, do NOT add as one sample): 62,871
+Largest sample: Rabany et al. (n=53,065)
+Smallest sample: Cardona-Roca et al. (n=80)
+
+Screened prevalence (student surveys only):
+     short_cite  prevalence_screened_pct
+   Samir et al.                     26.1
+Almomani et al.                     52.1
+
+ML AUCs reported in the papers (forecasting, not classification):
+   short_cite  ml_auc  ml_accuracy_pct
+Rabany et al.   0.893             81.0
+Faisal et al.   0.840              NaN
+
+Treatment >=50% responders (completers-only — see REPORT.md):
+                  short_cite  responders_ge50_pct
+Barbanti et al. (EMBRACE II)                 69.0
+         Cardona-Roca et al.                 65.0
+
+Misdiagnosed at first visit (Suwanlaong): 43.3%
+Diagnosed before referral — men vs women (Angerhoefer): 57.0% vs 73.8%
+
+Trigger rates (sleep):
+     short_cite  sleep_trigger_pct  noise_trigger_pct
+   Samir et al.               59.7               47.4
+ Elmazny et al.               85.6               84.5
+Almomani et al.               83.0                NaN
+
+======================================================================
+PART C — One idea from each paper (see outputs/idea_map.csv)
+======================================================================
+
+Rabany et al. 2026 — Forecasting, not just classifying: 30-day headache history (37.64% of model performance) beat prodrome (11.13%).
+  -> ML evaluation reports AUC-style honesty and a time/history lesson; the project design (REPORT.md §4.3) proposes a 4-8 week daily diary so a future forecasting model has the history it needs. No time-series is faked from the 400 cross-sectional records.
+
+Faisal et al. 2026 — How you model time matters: time-series AUC 0.84 vs decision tree 0.59 and foundation model 0.55.
+  -> Model comparison in Part A is head-to-head on the same split/CV, like Faisal's comparison — and the survey template (Q15) collects the daily data a time-series model would need. Sensitivity/recall is reported per class (REPORT.md §7.2), so a good headline accuracy cannot hide missed cases.
+
+Samir et al. 2025 — Student survey design: validated screens (MS-Q, MIDAS, GAD-7, PHQ-9), multinational, n=5,954.
+  -> Survey template Q1-Q3, Q12 use validated-screen style items and a disability count; REPORT.md warns to report screened-positive, never diagnosed, and to stratify by sex/faculty instead of convenience-only sampling.
+
+Almomani et al. 2025 — Care gap in students: 82% used analgesics, only 11.7% sought medical help; 52.1% screened positive in a 94.2%-female sample.
+  -> Survey template Q13-Q14 measure care-seeking and medicine use; REPORT.md uses Almomani for triggers/disability patterns, NOT for prevalence.
+
+Angerhoefer et al. 2025 — Missed diagnosis is patterned: men diagnosed before referral 57.0% vs women 73.8%; pressing pain raises misses in men.
+  -> Missed-diagnosis risk flags in Part C (below) and survey Q4-Q5, Q7 capture the atypical features (bilateral, pressing, no worsening with activity) that drive misses.
+
+Suwanlaong et al. 2025 — 43.3% misdiagnosed at first visit; first consult with a non-neurologist aOR 7.92; vertigo aOR 4.39.
+  -> Missed-diagnosis risk flags in Part C; survey Q13 records who was consulted first. Wide CIs (male aOR 95% CI 1.07-56.50) are quoted, not hidden.
+
+Elmazny et al. 2025 — Trigger awareness gap: stress recognised by 93.4%, but only 28.3% actively manage triggers and only 18% keep a diary.
+  -> Survey template Q8-Q11 measure trigger awareness AND action (diary, sleep schedule, stress techniques) — knowledge alone is not counted as management.
+
+Barbanti et al. 2025 (EMBRACE II) — Real-world treatment evidence must show the denominator: >=50% responders 69%, but only for 74/215 (34%) who completed >=24 weeks.
+  -> Part B prints the completers denominator next to every responder rate; REPORT.md never quotes 69% without '74/215'.
+
+Cardona-Roca et al. 2025 — Patient satisfaction matters, not only migraine days: TSQM 77.2, MMD -8.7, 65% >=50% responders — in completers only.
+  -> Part B compares Barbanti vs Cardona-Roca responder rates with their completers caveats side by side; survey Q14 asks about preventive use without recommending any drug.
+
+Khan et al. 2024 — Cautionary lesson: augmenting 400 records to 1,447 and claiming DNN 99.66% — no external validation, likely leakage.
+  -> NO augmentation anywhere in this project. Stratified split, 5-fold CV, per-class reporting, and this honesty note in the code, README and REPORT.
+
+Prototype missed-diagnosis flags in the 400 patients (Angerhoefer/Suwanlaong predictors present in this data):
+  Vertigo present: 50 patients (12.5%)
+  No visual symptoms: 82 patients (20.5%)
+  Both (vertigo + no visual): 5 patients (1.2%)
+  NOTE: sex, bilateral location, pressing character and first-consult clinician are NOT in this dataset,
+  so this flag is a prototype only — the survey template (Q4, Q5, Q7, Q13) collects them for future work.
+
+Done. Charts and tables saved in outputs/
